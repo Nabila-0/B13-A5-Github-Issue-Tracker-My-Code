@@ -66,20 +66,25 @@
 
                             <label class="label text-[#1F2937] font-medium text-base">Username</label>
 
-                            <input type="email" class="input w-full 
+                            <input type="text" 
+                            id="input_username"
+                            class="input w-full 
                             mt-2 mb-1.5 text-[#64748B] text-base font-normal p-4 py-6 rounded-lg border 
-                            border-[#E4E4E7]" placeholder="Enter Username" />
+                            border-[#E4E4E7]" placeholder="Enter Username"/>
 
                             <p class="text-[#4A00FF] text-[14px] font-normal mb-4">Default: admin</p>
 
 
                             <label class="label text-[#1F2937] font-medium text-base">Password</label>
 
-                            <input type="password" class="input w-full mt-2 mb-1.5 text-[#64748B] text-base font-normal p-4 py-6 rounded-lg border border-[#E4E4E7]" placeholder="Password" />
+                            <input type="password" 
+                            id="input_password"
+                            class="input w-full mt-2 mb-1.5 text-[#64748B] text-base font-normal p-4 py-6 rounded-lg border border-[#E4E4E7]" placeholder="Password" />
 
                             <p class="text-[#4A00FF] text-[14px] font-normal mb-6">Default: admin123</p>
 
-                            <button class="signin_btn bg-[#4A00FF] text-white text-base font-semibold p-4 rounded-lg mb-6 cursor-pointer hover:bg-blue-600">Sign In</button>
+                            <button id="signin_btn"
+                            class="bg-[#4A00FF] text-white text-base font-semibold p-4 rounded-lg mb-6 cursor-pointer hover:bg-blue-600">Sign In</button>
                         </fieldset>
                     </div>
                 </div>
@@ -114,6 +119,12 @@
 
         </div>
     </section>
+
+
+
+    <!-- linking signin.js file  -->
+
+    <script src="./script/signin.js"></script>
 </body>
 
 </html>
