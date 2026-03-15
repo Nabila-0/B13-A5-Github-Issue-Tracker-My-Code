@@ -1,11 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- linking Tailwind CSS play CDN  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+    <!-- linking DaisyUI play CDN  -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+
+
+    <!-- linking Font Awesome CDN  -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- adding Google Font  -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+
+
     <title>GitHub Issues Tracker | Home</title>
 </head>
+
 <body>
-    <p>home</p>
+
+    <!-- header starts here  -->
+
+    <header>
+        <nav>
+            <!-- NavBar from daisyUI  -->
+
+            <div class="navbar flex justify-between shadow-sm px-20 py-[17px]">
+
+                <div class="nav_left_side">
+
+                    <a class="flex items-center gap-1">
+
+                        <img src="./assets/github-logo.png" alt="" class="h-[37px] w-9">
+
+                        <p class="text-[#1F2937] text-2xl font-semibold py-[3px]">GitHub Issues Tracker</p>
+                    </a>
+                </div>
+
+
+                <div class="nav_right_side flex gap-4 items-center">
+
+                    <div class="relative flex items-center">
+
+                        <i class="fa-solid fa-magnifying-glass text-[#64748B] absolute left-3 z-10"></i>
+
+                        <input type="text" placeholder="Search issues..."
+                            class="input w-24 md:w-auto rounded-sm px-4 py-[22px] text-base font-normal text-[#64748B] border border-[#E4E4E7] pl-10" />
+
+                    </div>
+
+                    <button class="bg-[#4A00FF] text-white 
+                    font-semibold text-base px-4 py-[11px] rounded-sm hover:bg-blue-600 cursor-pointer">Search</button>
+
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- header ends here  -->
+
+
+
+    <!-- main section starts here  -->
+
+    <main class="bg-[#F8FAFC] min-h-screen pt-[60px]">
+
+        <!-- three buttons start here -->
+
+        <div class="three_buttons bg-white max-w-[1110px] rounded-lg 
+        shadow-md mx-auto p-6 flex gap-2 mb-4">
+
+            <button id="all_tab" onclick="switchTab('all')" class="px-[49.5px] py-3 rounded-sm font-semibold text-base cursor-pointer
+              hover:border-gray-400">All</button>
+
+            <button id="open_tab" onclick="switchTab('open')" class="px-[38.5px] py-3 rounded-sm font-semibold text-base cursor-pointer 
+            hover:border-gray-400">Open</button>
+
+            <button id="closed_tab" onclick="switchTab('closed')" class="px-[33.5px] py-3 rounded-sm font-semibold text-base cursor-pointer 
+            hover:border-gray-400">Closed</button>
+
+        </div>
+
+        <!-- three buttons end here -->
+
+
+        
+        <div class="max-w-[1110px] mx-auto bg-white rounded-lg shadow-md">
+
+            <!-- statistic card section starts here -->
+
+            <section class="statistic_card_section">
+
+                <div class="statistic_card flex justify-between 
+                items-center p-6">
+
+                    <div class="statistic_card_left flex gap-2 items-center relative">
+
+
+                        <span class="bg-[#ECE4FF] w-[50px] h-[50px] 
+                            rounded-full ">
+                        </span>
+
+                        <div class="statistic_card_img absolute left-[9px]">
+                            <img src="./assets/Aperture.png" alt="">
+                        </div>
+
+
+                        <div>
+                            <h3 class="text-[#1F2937] text-xl font-semibold">
+                                <span id="card_count">50</span> Issues</h3>
+
+                            <p class="text-[#64748B] text-base font-normal">Track and manage your project issues</p>
+                        </div>
+
+                    </div>
+
+                    <div class="statistic_card_right flex gap-4">
+
+                        <div class="flex items-center gap-2">
+                            <span class="bg-[#00A96E] w-3 h-3 
+                            rounded-full"></span>
+                            <span class="text-[#1F2937] text-base font-medium">Open</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <span class="bg-[#A855F7] w-3 h-3 
+                            rounded-full"></span>
+                            <span class="text-[#1F2937] text-base font-medium">Closed</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr class="border border-[#E4E4E7]">
+
+            </section>
+
+            <!-- Statistic Card starts here  -->
+
+
+
+
+            <!-- three sections div starts here   -->
+
+
+            <div class="three_sections_div min-h-screen">
+
+                <!-- all section starts here  -->
+
+                <section id="all_container" class="hidden">
+
+                    <p>all section</p>
+
+                </section>
+                <!-- all section ends here  -->
+
+
+
+
+                <!-- open section starts here  -->
+
+                <section id="open_container" class="hidden">
+
+                    <p>open section</p>
+
+                </section>
+                <!-- open section ends here  -->
+
+
+
+
+                <!-- closed section starts here  -->
+
+                <section id="closed_container" class="hidden">
+
+                    <p>closed section</p>
+
+                </section>
+                <!-- closed section ends here  -->
+
+
+
+            </div>
+            
+
+
+        </div>
+
+        <!-- three sections div ends here   -->
+
+
+    </main>
+
+    <!-- main section ends here  -->
+
+
+    <!-- linking home.js file  -->
+
+    <script src="./script/home.js"></script>
+
 </body>
+
 </html>
