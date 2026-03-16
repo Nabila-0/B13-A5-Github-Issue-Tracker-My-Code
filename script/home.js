@@ -82,22 +82,35 @@ const cardCount = document.getElementById("card_count");
 const loadAllIssues = () => {
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then((res) => res.json())
-        .then((json) => displayAllIssues(json.data));
+        .then((json) => displayIssues(json.data));
 };
 
-const displayAllIssues = (allIssues) => {
-    // console.log(allIssues);
+const displayIssues = (issues) => {
+
 
     const allContainerDiv = document.getElementById("all_container_div");
 
     allContainerDiv.innerHTML = "";
 
-    allIssues.forEach(issue => {
-        console.log(issue);
 
-        const issueCard = document.createElement("div");
+    const openContainerDiv = document.getElementById("open_container_div");
 
-        issueCard.innerHTML = `
+    openContainerDiv.innerHTML = "";
+
+
+    const closedContainerDiv = document.getElementById("closed_container_div");
+
+    closedContainerDiv.innerHTML = "";
+
+
+
+    // for Each loop to get issue one by one 
+
+    issues.forEach(issue => {
+
+        // card html 
+
+        let cardHTML = `
 
             <div class="issue_card shadow-md p-4 border-t-4 rounded-md h-full
             ${issue.status === "open"
@@ -207,8 +220,39 @@ const displayAllIssues = (allIssues) => {
                         </div>
             `;
 
+        // display issues in all section
 
-        allContainerDiv.append(issueCard);
+        const allIssueCard = document.createElement("div");
+
+        allIssueCard.innerHTML = cardHTML;
+
+        allContainerDiv.append(allIssueCard);
+
+
+
+        // display issues in open section
+
+        if (issue.status === "open") {
+
+            const openIssueCard = document.createElement("div");
+
+            openIssueCard.innerHTML = cardHTML;
+
+            openContainerDiv.append(openIssueCard);
+        }
+
+
+
+        // display issues in closed section
+
+        if (issue.status === "closed") {
+
+            const closedIssueCard = document.createElement("div");
+
+            closedIssueCard.innerHTML = cardHTML;
+
+            closedContainerDiv.append(closedIssueCard);
+        }
     });
 
 
