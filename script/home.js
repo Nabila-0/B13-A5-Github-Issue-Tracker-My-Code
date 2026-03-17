@@ -62,28 +62,26 @@ function switchTab(tab) {
         closedContainer.classList.remove("hidden");
     }
 
-    // updateStat();
+    updateCardCount(tab);
 
 }
 
 switchTab(currentTab);
 
 
-// --------------
 
-// getting  Card Count by ID 
-
-const cardCount = document.getElementById("card_count");
-
-
-//----------------------------------
-
-
-const loadAllIssues = () => {
+const loadIssues = () => {
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then((res) => res.json())
-        .then((json) => displayIssues(json.data));
+        .then((json) => {
+
+            displayIssues(json.data);
+
+        });
 };
+
+
+// function for displayinng issue cards in all, open and closed section
 
 const displayIssues = (issues) => {
 
@@ -256,7 +254,44 @@ const displayIssues = (issues) => {
     });
 
 
+    updateCardCount(currentTab);
 };
 
-loadAllIssues();
+loadIssues();
+
+
+
+
+//.................
+
+
+
+// function for updating statistics 
+
+function updateCardCount(tab) {
+
+
+    // getting  Card Count by ID 
+
+    const cardCount = document.getElementById("card_count");
+
+    const allContDiv = document.getElementById("all_container_div");
+    const openContDiv = document.getElementById("open_container_div");
+    const closedContDiv = document.getElementById("closed_container_div");
+
+
+    if (tab === "all") {
+        cardCount.innerText = allContDiv.children.length;
+    }
+
+    else if (tab === "open") {
+        cardCount.innerText = openContDiv.children.length;
+    }
+
+    else if (tab === "closed") {
+        cardCount.innerText = closedContDiv.children.length;
+    }
+
+}
+
 
