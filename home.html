@@ -46,7 +46,7 @@
         <nav>
             <!-- NavBar from daisyUI  -->
 
-            <div class="navbar flex justify-between shadow-sm px-20 py-[17px]">
+            <div class="navbar flex flex-col gap-4 md:flex-row justify-between shadow-sm md:px-20 py-[17px]">
 
                 <div class="nav_left_side">
 
@@ -66,7 +66,7 @@
                         <i class="fa-solid fa-magnifying-glass text-[#64748B] absolute left-3 z-10"></i>
 
                         <input id="search_input" type="text" placeholder="Search issues..."
-                            class="input w-24 md:w-auto rounded-sm px-4 py-[22px] text-base font-normal text-[#64748B] border border-[#E4E4E7] pl-10" />
+                            class="input w-full md:w-auto rounded-sm px-4 py-[22px] text-base font-normal text-[#64748B] border border-[#E4E4E7] pl-10" />
 
                     </div>
 
@@ -86,20 +86,21 @@
 
     <!-- main section starts here  -->
 
-    <main class="bg-[#F8FAFC] min-h-screen pt-[60px]">
+    <main class="bg-[#F8FAFC] min-h-screen pt-4 md:pt-[60px]">
 
         <!-- three buttons start here -->
 
         <div class="three_buttons bg-white max-w-[1110px] rounded-lg 
-        shadow-md mx-auto p-6 flex gap-2 mb-4">
+        shadow-md mx-auto p-[15px] md:p-6 flex gap-2 mb-4">
 
-            <button id="all_tab" onclick="switchTab('all')" class="px-[49.5px] py-3 rounded-sm font-semibold text-base cursor-pointer
+            <button id="all_tab" onclick="switchTab('all')" 
+            class="px-10 md:px-[49.5px] py-3 rounded-sm font-semibold text-base cursor-pointer
               hover:border-gray-400">All</button>
 
-            <button id="open_tab" onclick="switchTab('open')" class="px-[38.5px] py-3 rounded-sm font-semibold text-base cursor-pointer 
+            <button id="open_tab" onclick="switchTab('open')" class="px-7 md:px-[38.5px] py-3 rounded-sm font-semibold text-base cursor-pointer 
             hover:border-gray-400">Open</button>
 
-            <button id="closed_tab" onclick="switchTab('closed')" class="px-[33.5px] py-3 rounded-sm font-semibold text-base cursor-pointer 
+            <button id="closed_tab" onclick="switchTab('closed')" class="px-6 md:px-[33.5px] py-3 rounded-sm font-semibold text-base cursor-pointer 
             hover:border-gray-400">Closed</button>
 
         </div>
@@ -114,7 +115,7 @@
 
         <section id="spinner" class="hidden">
 
-            <div class="flex justify-center items-center py-8">
+            <div class="flex justify-center items-center py-5 md:py-8">
 
                 <span class="loading loading-spinner loading-xl"></span>
             </div>
@@ -134,16 +135,16 @@
             <section class="statistic_card_section">
 
                 <div class="statistic_card flex justify-between 
-                items-center p-6">
+                items-center p-4 md:p-6">
 
                     <div class="statistic_card_left flex gap-2 items-center relative">
 
 
-                        <span class="bg-[#ECE4FF] w-[50px] h-[50px] 
-                            rounded-full ">
+                        <span class="bg-[#ECE4FF] w-[50px] h-[50px] rounded-full ">
                         </span>
 
-                        <div class="statistic_card_img absolute left-[9px]">
+                        <div class="statistic_card_img absolute 
+                        left-[7px]  md:left-[9px]">
                             <img src="./assets/Aperture.png" alt="">
                         </div>
 
@@ -158,7 +159,7 @@
 
                     </div>
 
-                    <div class="statistic_card_right flex gap-4">
+                    <div class="statistic_card_right flex flex-col md:flex-row gap-2 md:gap-4">
 
                         <div class="flex items-center gap-2">
                             <span class="bg-[#00A96E] w-3 h-3 
@@ -180,7 +181,7 @@
 
             </section>
 
-            <!-- Statistic Card starts here  -->
+            <!-- Statistic Card section ends here  -->
 
 
 
@@ -194,7 +195,7 @@
 
                 <section id="all_container" class="hidden p-6">
 
-                    <div id="all_container_div" class="grid grid-cols-4 gap-3">
+                    <div id="all_container_div" class="grid  grid-cols-1 md:grid-cols-4 gap-3">
 
 
 
@@ -211,7 +212,7 @@
 
                 <section id="open_container" class="hidden p-6">
 
-                    <div id="open_container_div" class="grid grid-cols-4 gap-3">
+                    <div id="open_container_div" class="grid  grid-cols-1 md:grid-cols-4 gap-3">
 
 
 
@@ -228,7 +229,7 @@
 
                 <section id="closed_container" class="hidden p-6">
 
-                    <div id="closed_container_div" class="grid grid-cols-4 gap-3">
+                    <div id="closed_container_div" class="grid  grid-cols-1 md:grid-cols-4 gap-3">
 
 
 
