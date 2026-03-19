@@ -5,6 +5,29 @@ const inactiveTab = ["text-[#64748B]", "bg-white", "border",
     "border-[#E4E4E7]"];
 
 
+
+// function for displaying spinner 
+
+const manageSpinner = (status) => {
+
+    if (status == true) {
+
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("under_btn").classList.add("hidden");
+    }
+
+    else {
+
+        document.getElementById("spinner").classList.add("hidden");
+        document.getElementById("under_btn").classList.remove("hidden");
+    }
+
+};
+
+
+
+
+    
 // getting  three sections by ID 
 
 const allContainer = document.getElementById("all_container");
@@ -15,6 +38,8 @@ const closedContainer = document.getElementById("closed_container");
 // function for Switching three Buttons 
 
 function switchTab(tab) {
+
+    manageSpinner(true);
 
     const tabs = ["all", "open", "closed"];
 
@@ -64,6 +89,10 @@ function switchTab(tab) {
 
     updateCardCount(tab);
 
+
+    manageSpinner(false);
+    
+
 }
 
 switchTab(currentTab);
@@ -71,6 +100,9 @@ switchTab(currentTab);
 
 
 const loadIssues = () => {
+
+    manageSpinner(true);
+
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then((res) => res.json())
         .then((json) => {
@@ -371,6 +403,8 @@ const displayIssues = (issues) => {
 
 
     updateCardCount(currentTab);
+
+    manageSpinner(false);
 };
 
 loadIssues();
@@ -419,6 +453,8 @@ document.getElementById("search_btn")
         const searchValue = input.value.trim().toLowerCase();
 
 
+        manageSpinner(true);
+
 
         fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
             .then(res => res.json())
@@ -433,7 +469,10 @@ document.getElementById("search_btn")
 
                 displayIssues(filterIssueCards);
 
+
             });
+
+            
 
     });
 
