@@ -65,12 +65,12 @@
 
                         <i class="fa-solid fa-magnifying-glass text-[#64748B] absolute left-3 z-10"></i>
 
-                        <input type="text" placeholder="Search issues..."
+                        <input id="search_input" type="text" placeholder="Search issues..."
                             class="input w-24 md:w-auto rounded-sm px-4 py-[22px] text-base font-normal text-[#64748B] border border-[#E4E4E7] pl-10" />
 
                     </div>
 
-                    <button class="bg-[#4A00FF] text-white 
+                    <button id="search_btn" class="bg-[#4A00FF] text-white 
                     font-semibold text-base px-4 py-[11px] rounded-sm hover:bg-blue-600 cursor-pointer">Search</button>
 
                 </div>
@@ -177,7 +177,7 @@
 
                     <div id="all_container_div" class="grid grid-cols-4 gap-3">
 
-                 
+
 
 
                     </div>
@@ -194,9 +194,9 @@
 
                     <div id="open_container_div" class="grid grid-cols-4 gap-3">
 
-                 
 
-                        
+
+
                     </div>
 
                 </section>
@@ -211,9 +211,9 @@
 
                     <div id="closed_container_div" class="grid grid-cols-4 gap-3">
 
-                 
 
-                        
+
+
                     </div>
                 </section>
                 <!-- closed section ends here  -->
@@ -232,6 +232,51 @@
     </main>
 
     <!-- main section ends here  -->
+
+
+
+
+
+
+    <!-- modal from daisyUI starts here -->
+
+
+
+    <!-- Open the modal using ID.showModal() method -->
+
+
+    <dialog id="issue_card_modal" class="modal modal-bottom sm:modal-middle">
+
+        <div class="modal-box">
+
+
+            <!-- issue card details container starts here  -->
+
+            <div id="issue_card_details_container">
+
+
+               
+
+
+            </div>
+
+            <!-- issue card details container starts here  -->
+
+            <div class="modal-action">
+
+                <form method="dialog">
+
+                    <!-- if there is a button in form, it will close the modal -->
+
+                    <button class="bg-[#4A00FF] text-white font-semibold text-base py-[11.5px] px-4 rounded-sm cursor-pointer hover:bg-blue-600">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+
+    <!-- modal from daisyUI  ends here -->
+
 
 
     <!-- linking home.js file  -->

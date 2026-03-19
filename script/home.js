@@ -81,6 +81,133 @@ const loadIssues = () => {
 };
 
 
+const loadIssueCardDetails = async (id) => {
+
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+
+    console.log(url);
+
+    const res = await fetch(url);
+    const details = await res.json();
+
+    displayIssueCardDetails(details.data);
+};
+
+
+// a function for getting elements from the labels key
+
+const elementsOfAnArray = (array) => {
+
+    // getting elements one by one from the array named labels 
+
+    const arrayElements = array.map((element) => 
+        
+        
+                        `<span class="text-[#D97706] text-[11px] font-medium bg-[#FFF8DB] rounded-[100px] border border-[#FDE68A] px-1 
+                        py-1 ">${element.toUpperCase()}</span>
+                        `);
+
+    return arrayElements.join(" ");
+
+
+}
+
+
+
+// function for displaying issue card's details modal by clicking a card
+
+const displayIssueCardDetails = (issue) => {
+
+    console.log(issue);
+
+
+    const issueCardDetailsContainer = document.getElementById("issue_card_details_container");
+
+    issueCardDetailsContainer.innerHTML = `
+    
+         <div class="upper">
+
+                    <h1 class="text-[24px] text-[#1F2937] font-bold">${issue.title}</h1>
+
+                    <div class="flex items-center gap-2 mt-2">
+
+                        <div>
+
+                        ${issue.status === "open"
+            ? `<p class="text-[12px] text-white bg-[#00A96E] font-medium rounded-[100px] px-2 py-1.5"> Opened </p>`
+
+            : `<p class="text-[12px] text-white bg-[#A855F7] font-medium rounded-[100px] px-2 py-1.5"> Closed </p>`
+        }
+
+                        </div>
+                        
+
+                        <span class="text-[#64748B] text-[4px]"><i class="fa-solid fa-circle"></i></span>
+
+                        <p class="text-[12px] text-[#64748B] font-normal">Opened by 
+                        <span class="font-medium">${issue.author}</span></p>
+
+                        <span class="text-[#64748B] text-[4px]"><i class="fa-solid fa-circle"></i></span>
+
+                        <p class="text-[12px] text-[#64748B] font-normal">${new Date(issue.createdAt).toLocaleDateString('en-US')}</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="middle">
+
+                    <!-- lebels div  -->
+
+                    <div class="lebels_div flex gap-1 my-6">
+
+                        
+                        <div> ${elementsOfAnArray(issue.labels)}
+                        </div>
+
+                    </div>
+                    
+
+                    <p class="text-base text-[#64748B] font-normal">
+                    ${issue.description}</p>
+
+                </div>
+
+
+                <div class="lower bg-[#F8FAFC] flex items-center 
+                gap-32 p-4 rounded-lg my-6">
+
+                    <div class="lower_left">
+
+                        <p class="text-[#64748B] text-base font-normal">Assignee:</p>
+
+                        <h3 class="text-[#1F2937] text-base font-semibold mt-1">${issue.assignee
+            ? issue.assignee
+            : "Unassigned"
+        }</h3>
+                    </div>
+
+
+                    <div class="lower_right">
+
+                        <p class="text-[#64748B] text-base font-normal">Priority:</p>
+
+                        <p class="text-white text-[12px] font-medium bg-[#EF4444] rounded-[100px] py-1.5 px-[15.5px] mt-1">
+                        ${issue.priority.toUpperCase()}</p>
+
+
+                    </div>
+
+                </div>
+    `;
+
+    document.getElementById("issue_card_modal").showModal();
+
+};
+
+
+
 // function for displayinng issue cards in all, open and closed section
 
 const displayIssues = (issues) => {
@@ -114,7 +241,8 @@ const displayIssues = (issues) => {
             ${issue.status === "open"
                 ? 'border-[#00A96E]'
                 : 'border-[#A855F7]'
-            }">
+            }"
+            onclick="loadIssueCardDetails (${issue.id})">
 
                 <div class="upper flex justify-between">
 
@@ -157,34 +285,21 @@ const displayIssues = (issues) => {
                     <p class="text-[#64748B] text-[12px] font-normal">
                         ${issue.description}</p>
 
-                    <!-- two lebels div  -->
+                    <!--lebels div  -->
 
-                    <div class="two_lebels flex gap-1 mt-3 mb-4">
+                    <div class="lebels_div mt-3 mb-4">
 
-                        <!-- Bug lebel  -->
 
-                        <div class="text-[#EF4444] text-[12px] font-medium 
-                        bg-[#FEECEC] rounded-[100px] border border-[#FECACA] px-2 
-                        py-1.5 flex gap-0.5">
+                        
+                        <div> ${elementsOfAnArray(issue.labels)}
+                        
 
-                            <span><i class="fa-solid fa-bug"></i></span>
+                    </div>
+                           
 
-                            <span>BUG</span>
-                         </div>
-
-                        <!-- Help wanted lebel  -->
-
-                        <div class="text-[#D97706] text-[12px] font-medium 
-                        bg-[#FFF8DB] rounded-[100px] border border-[#FDE68A] px-2 
-                        py-1.5 flex gap-0.5">
-
-                            <span><i class="fa-solid fa-life-ring"></i></span>
-
-                                <span>HELP WANTED</span>
-                                    </div>
-
-                                </div>
-                            </div>
+                        
+                                
+                    </div>
 
 
 
@@ -206,7 +321,8 @@ const displayIssues = (issues) => {
                     text-[#64748B] text-[12px] font-normal flex justify-between">
 
                         <p>
-                            Assignee:${issue.assignee}
+                            Assignee:${issue.assignee
+                ? issue.assignee : "Unassigned"}
                         </p>
 
                         <p>Updated:${new Date(issue.updatedAt).toLocaleDateString('en-US')}</p>
@@ -262,8 +378,6 @@ loadIssues();
 
 
 
-//.................
-
 
 
 // function for updating statistics 
@@ -293,5 +407,34 @@ function updateCardCount(tab) {
     }
 
 }
+
+
+
+// Implementing Search button 
+
+document.getElementById("search_btn")
+    .addEventListener("click", () => {
+
+        const input = document.getElementById("search_input");
+        const searchValue = input.value.trim().toLowerCase();
+
+
+
+        fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+            .then(res => res.json())
+            .then(json => {
+
+                const searchedIssueCards = json.data;
+
+
+                const filterIssueCards = searchedIssueCards.filter((issueCard) =>
+                    issueCard.title.toLowerCase().includes(searchValue));
+
+
+                displayIssues(filterIssueCards);
+
+            });
+
+    });
 
 
